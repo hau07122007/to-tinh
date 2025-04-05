@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tỏ tình với trái tim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #e91e63;
+      --secondary-color: #ff80ab;
+      --background-gradient: linear-gradient(135deg, #ffe6e6 0%, #ffb3d9 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      background: var(--background-gradient);
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      color: var(--primary-color);
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 2s ease, float 3s ease-in-out infinite;
+    }
+
+    #heart {
+      font-size: 7rem;
+      color: var(--primary-color);
+      animation: heartBeat 1.5s infinite, float 3s ease-in-out infinite;
+    }
+
+    #message {
+      font-size: 1.5rem;
+      color: #333;
+      margin-top: 20px;
+      font-weight: bold;
+      animation: fadeIn 2s ease 1s;
+    }
+
+    #buttons {
+      margin-top: 20px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+    }
+
+    .yes {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .no {
+      background-color: #f44336;
+      color: white;
+    }
+
+    #thankYouMessage {
+      font-size: 1.5rem;
+      color: #333;
+      font-weight: bold;
+      margin-top: 20px;
+      display: none;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Mỹ Duyên Ơi</h1>
+
+  <div id="buttons">
+    <button class="button yes" onclick="showMessage(true)">Đồng ý</button>
+    <button class="button no" onclick="moveButton()">Không đồng ý</button>
+  </div>
+
+  <div id="heart" style="display: none;">🎀</div>
+  <div id="message" style="display: none;">Em có muốn làm người anh yêu không?</div>
+
+  <div id="thankYouMessage">
+    Cảm ơn em đã đồng ý làm ngườu anh yêu! ❤️
+  </div>
+
+  <script>
+    function showMessage(yes) {
+      const heart = document.getElementById('heart');
+      const message = document.getElementById('message');
+      const buttons = document.getElementById('buttons');
+      const thankYouMessage = document.getElementById('thankYouMessage');
+
+      if (yes) {
+        heart.style.display = 'block';
+        message.style.display = 'block';
+        buttons.style.display = 'none'; // Ẩn các nút
+
+        // Sau 5 giây, hiển thị câu cảm ơn
+        setTimeout(function() {
+          thankYouMessage.style.display = 'block';
+        }, 5000); // Trì hoãn 5 giây (5000ms)
+      }
+    }
+
+    function moveButton() {
+      const noButton = document.querySelector('.no');
+      const buttons = document.getElementById('buttons');
+      const thankYouMessage = document.getElementById('thankYouMessage');
+      
+      noButton.style.animation = 'moveButton 1s ease 5'; // Hiệu ứng di chuyển 5 lần
+      setTimeout(function() {
+        thankYouMessage.style.display = 'block'; // Hiển thị câu cảm ơn sau khi di chuyển nút
+        buttons.style.display = 'none'; // Ẩn cả 2 nút sau khi câu cảm ơn xuất hiện
+      }, 500); // Thời gian trì hoãn để sau khi nút di chuyển 1 lần, câu cảm ơn sẽ xuất hiện
+    }
+  </script>
+</body>
+</html>
